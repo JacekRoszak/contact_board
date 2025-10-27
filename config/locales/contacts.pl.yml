@@ -1,0 +1,67 @@
+pl:
+  activerecord:
+    models:
+      contact: "Kontakt"
+    attributes:
+      contact:
+        name: "Imię"
+        surname: "Nazwisko"
+        email: "Email"
+        phone: "Telefon"
+        category: "Kategoria"
+        created_at: "Utworzono"
+        updated_at: "Zaktualizowano"
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: "nie może być puste"
+            surname:
+              blank: "nie może być puste"
+            email:
+              blank: "nie może być pusty"
+              invalid: "ma nieprawidłowy format"
+              taken: "jest już zajęty"
+            category:
+              blank: "nie może być pusta"
+
+  contacts:
+    index:
+      title: "Kontakty"
+      no_contacts: "Brak kontaktów"
+      new_contact: "Nowy kontakt"
+      count: "Liczba kontaktów: %{count}"
+    show:
+      title: "Szczegóły kontaktu"
+      edit: "Edytuj"
+      delete: "Usuń"
+      back: "Powrót do listy"
+    new:
+      title: "Nowy kontakt"
+    edit:
+      title: "Edytuj kontakt"
+    form:
+      create: "Utwórz kontakt"
+      update: "Zaktualizuj kontakt"
+      cancel: "Anuluj"
+      select_category: "Wybierz kategorię"
+      errors: "Formularz zawiera błędy:"
+    messages:
+      created: "Kontakt został pomyślnie utworzony."
+      updated: "Kontakt został pomyślnie zaktualizowany."
+      deleted: "Kontakt został pomyślnie usunięty."
+      confirm_delete: "Czy na pewno chcesz usunąć ten kontakt?"
+    categories:
+      family: "Rodzina"
+      friends: "Przyjaciele"
+      work: "Praca"
+    time:
+      ago: "%{time} temu"
+
+  common:
+    logout: "Wyloguj się"
+    back: "Powrót"
+    edit: "Edytuj"
+    delete: "Usuń"
+    show: "Pokaż"

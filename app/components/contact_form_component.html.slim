@@ -1,0 +1,33 @@
+.form-container
+  = form_with model: contact, url: url, method: method, local: true, class: 'contact-form' do |form|
+    - if contact.errors.any?
+      .errors
+        h3 = t('contacts.form.errors')
+        ul
+          - contact.errors.full_messages.each do |message|
+            li = message
+
+    .form-row
+      .form-field
+        = form.label :name, Contact.human_attribute_name(:name)
+        = form.text_field :name
+      
+      .form-field
+        = form.label :surname, Contact.human_attribute_name(:surname)
+        = form.text_field :surname
+
+    .form-field
+      = form.label :email, Contact.human_attribute_name(:email)
+      = form.email_field :email
+
+    .form-field
+      = form.label :phone, Contact.human_attribute_name(:phone)
+      = form.telephone_field :phone
+
+    .form-field
+      = form.label :category, Contact.human_attribute_name(:category)
+      = form.select :category, category_options, { prompt: t('contacts.form.select_category') }
+
+    .form-actions
+      = link_to t('contacts.form.cancel'), contacts_path, class: 'btn btn-secondary'
+      = form.submit submit_text, class: 'btn btn-primary'

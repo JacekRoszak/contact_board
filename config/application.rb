@@ -10,7 +10,7 @@ module ContactBoard
 
     config.autoload_lib(ignore: %w[assets tasks])
 
-    config.i18n.available_locales = [:en, :pl]
+    config.i18n.available_locales = [:pl]
     config.i18n.default_locale = :pl
 
     config.generators.system_tests = nil

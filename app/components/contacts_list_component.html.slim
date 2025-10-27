@@ -1,0 +1,22 @@
+- if any_contacts?
+  table.contacts-table
+    thead
+      tr
+        th = Contact.human_attribute_name(:name)
+        th = Contact.human_attribute_name(:surname)
+        th = Contact.human_attribute_name(:email)
+        th = Contact.human_attribute_name(:phone)
+        th = Contact.human_attribute_name(:category)
+        th = Contact.human_attribute_name(:updated_at)
+    tbody
+      - contacts.each_with_index do |contact, index|
+        tr class=('odd' if index.odd?)
+          td = contact.name
+          td = contact.surname
+          td = contact.email
+          td = contact.phone
+          td = t("contacts.categories.#{contact.category}")
+          td = t('contacts.time.ago', time: time_ago_in_words(contact.updated_at))
+- else
+  .empty-state
+    p = t('contacts.index.no_contacts')

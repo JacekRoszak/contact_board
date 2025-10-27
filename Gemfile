@@ -10,6 +10,7 @@ gem "stimulus-rails"
 gem "cssbundling-rails"
 gem "devise"
 gem "cancancan"
+gem "view_component"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "solid_cache"
 gem "solid_queue"
@@ -25,6 +26,7 @@ group :development, :test do
   gem "faker"
   gem "capybara"
   gem "selenium-webdriver"
+  gem "slim-rails"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
 end

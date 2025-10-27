@@ -1,0 +1,5 @@
+.page-header
+  h1 = t('contacts.index.title')
+  = link_to t('contacts.index.new_contact'), new_contact_path, class: 'btn btn-primary'
+
+= render ContactsListComponent.new(contacts: @contacts)

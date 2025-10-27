@@ -14,6 +14,8 @@ pl:
       timeout: "Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować."
       unauthenticated: "Musisz się zalogować lub zarejestrować, aby kontynuować."
       unconfirmed: "Musisz potwierdzić swój adres email, aby kontynuować."
+      user:
+        unauthenticated: "Musisz się zalogować lub zarejestrować, aby kontynuować."
     mailer:
       confirmation_instructions:
         subject: "Instrukcje potwierdzenia"
@@ -47,10 +49,19 @@ pl:
       signed_in: "Pomyślnie zalogowano."
       signed_out: "Pomyślnie wylogowano."
       already_signed_out: "Pomyślnie wylogowano."
+      new:
+        sign_in: "Zaloguj się"
+        password: "Hasło"
+        remember_me: "Zapamiętaj mnie"
     unlocks:
       send_instructions: "Za kilka minut otrzymasz email z instrukcjami dotyczącymi odblokowania konta."
       send_paranoid_instructions: "Jeśli Twoje konto istnieje, otrzymasz email z instrukcjami dotyczącymi odblokowania za kilka minut."
       unlocked: "Twoje konto zostało pomyślnie odblokowane. Zaloguj się, aby kontynuować."
+    shared:
+      links:
+        sign_up: "Zarejestruj się"
+        forgot_your_password: "Zapomniałeś hasła?"
+        sign_in: "Zaloguj się"
   errors:
     messages:
       already_confirmed: "zostało już potwierdzone, spróbuj się zalogować"
