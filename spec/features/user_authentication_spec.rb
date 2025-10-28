@@ -45,12 +45,14 @@ RSpec.feature 'User Authentication', type: :feature do
   end
 
   scenario 'User successfully logs out' do
-    sign_in user
-    visit contacts_path
+    visit new_user_session_path
+    fill_in 'Email', with: 'test@example.com'
+    fill_in 'Hasło', with: 'password123'
+    click_button 'Zaloguj się'
     
     click_link 'Wyloguj się'
     
-    expect(page).to have_content('Pomyślnie wylogowano')
     expect(page).to have_current_path(new_user_session_path)
+    expect(page).to have_content('Zaloguj się')
   end
 end

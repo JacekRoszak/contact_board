@@ -1,6 +1,13 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
+$VERBOSE = nil
+
 require_relative '../config/environment'
+
+require 'faker'
+I18n.available_locales = [:pl, :en]
+Faker::Config.locale = :en
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 

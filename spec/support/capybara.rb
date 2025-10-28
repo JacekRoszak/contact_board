@@ -18,10 +18,14 @@ Capybara.app_host = 'http://localhost:3000'
 
 RSpec.configure do |config|
   config.before(:each, type: :feature) do
-    if Capybara.current_driver == :rack_test
-      driven_by(:rack_test)
-    else
-      driven_by(:headless_chrome)
-    end
+    Capybara.current_driver = :rack_test
+  end
+  
+  config.before(:each, type: :feature, js: true) do
+    Capybara.current_driver = :headless_chrome
+  end
+  
+  config.after(:each, type: :feature) do
+    Capybara.use_default_driver
   end
 end

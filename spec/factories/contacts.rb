@@ -3,8 +3,8 @@ FactoryBot.define do
     name { Faker::Name.first_name }
     surname { Faker::Name.last_name }
     email { Faker::Internet.unique.email }
-    phone { Faker::PhoneNumber.phone_number }
-    category { :family }
+    phone { "+48#{Faker::Number.number(digits: 9)}" }
+    category { Contact.categories.keys.sample }
 
     trait :family do
       category { :family }

@@ -15,7 +15,7 @@ export default class extends Controller {
   }
 
   updateCounter() {
-    const table = this.listTarget.querySelector("table")
+    const table = this.element.querySelector("table")
     if (table) {
       const rows = table.querySelectorAll("tbody tr")
       this.counterTarget.textContent = rows.length

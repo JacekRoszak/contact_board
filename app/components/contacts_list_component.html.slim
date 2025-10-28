@@ -39,7 +39,7 @@
           td.actions
             button.btn-small.edit-btn type="button" data-action="click->inline-edit#edit" data-inline-edit-target="editButton" = t('common.edit')
             button.btn-small.btn-primary.save-btn type="button" data-action="click->inline-edit#save" data-inline-edit-target="saveButton" style="display: none;" = t('common.save')
-            = link_to t('common.delete'), contact_path(contact), data: { turbo_method: :delete, turbo_confirm: t('contacts.messages.confirm_delete') }, class: 'btn-small btn-danger', data: { inline_edit_target: "deleteButton" }
+            = link_to t('common.delete'), contact_path(contact), data: { turbo_method: :delete, turbo_confirm: t('contacts.messages.confirm_delete'), inline_edit_target: "deleteButton" }, class: 'btn-small btn-danger'
             button.btn-small.btn-secondary.cancel-btn type="button" data-action="click->inline-edit#cancel" data-inline-edit-target="cancelButton" style="display: none;" = t('common.cancel')
 - else
   .empty-state
