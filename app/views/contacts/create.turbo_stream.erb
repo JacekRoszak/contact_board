@@ -1,0 +1,51 @@
+<%= turbo_stream.prepend "contacts_table tbody" do %>
+  <tr id="contact_<%= @contact.id %>" class="odd" data-controller="inline-edit" data-inline-edit-contact-id-value="<%= @contact.id %>">
+    <td data-inline-edit-target="nameCell">
+      <span class="display-value" data-inline-edit-target="nameDisplay"><%= @contact.name %></span>
+      <input class="cell-input" type="text" name="contact[name]" value="<%= @contact.name %>" style="display: none;" data-inline-edit-target="nameInput">
+    </td>
+    
+    <td data-inline-edit-target="surnameCell">
+      <span class="display-value" data-inline-edit-target="surnameDisplay"><%= @contact.surname %></span>
+      <input class="cell-input" type="text" name="contact[surname]" value="<%= @contact.surname %>" style="display: none;" data-inline-edit-target="surnameInput">
+    </td>
+    
+    <td data-inline-edit-target="emailCell">
+      <span class="display-value" data-inline-edit-target="emailDisplay"><%= @contact.email %></span>
+      <input class="cell-input" type="email" name="contact[email]" value="<%= @contact.email %>" style="display: none;" data-inline-edit-target="emailInput">
+    </td>
+    
+    <td data-inline-edit-target="phoneCell">
+      <span class="display-value" data-inline-edit-target="phoneDisplay"><%= @contact.phone %></span>
+      <input class="cell-input" type="tel" name="contact[phone]" value="<%= @contact.phone %>" style="display: none;" data-inline-edit-target="phoneInput">
+    </td>
+    
+    <td data-inline-edit-target="categoryCell">
+      <span class="display-value" data-inline-edit-target="categoryDisplay"><%= t("contacts.categories.#{@contact.category}") %></span>
+      <select class="cell-select" name="contact[category]" style="display: none;" data-inline-edit-target="categoryInput">
+        <% Contact.categories.each do |key, _| %>
+          <option value="<%= key %>" <%= 'selected' if @contact.category == key %>><%= t("contacts.categories.#{key}") %></option>
+        <% end %>
+      </select>
+    </td>
+    
+    <td><%= t('contacts.time.ago', time: time_ago_in_words(@contact.updated_at)) %></td>
+    
+    <td class="actions">
+      <button class="btn-small edit-btn" type="button" data-action="click->inline-edit#edit" data-inline-edit-target="editButton"><%= t('common.edit') %></button>
+      <button class="btn-small btn-primary save-btn" type="button" data-action="click->inline-edit#save" data-inline-edit-target="saveButton" style="display: none;"><%= t('common.save') %></button>
+      <%= link_to t('common.delete'), contact_path(@contact), data: { turbo_method: :delete, turbo_confirm: t('contacts.messages.confirm_delete') }, class: 'btn-small btn-danger', data: { inline_edit_target: "deleteButton" } %>
+      <button class="btn-small btn-secondary cancel-btn" type="button" data-action="click->inline-edit#cancel" data-inline-edit-target="cancelButton" style="display: none;"><%= t('common.cancel') %></button>
+    </td>
+  </tr>
+<% end %>
+
+<%= turbo_stream.update "flash_messages" do %>
+  <%= render FlashComponent.new(message: flash[:notice], type: :notice) if flash[:notice] %>
+<% end %>
+
+<%= turbo_stream.replace "new_contact_form" do %>
+  <%= form_with model: Contact.new, local: true, id: "new_contact_form", class: 'contact-form' do |form| %>
+    <%= render ContactFormComponent.new(contact: Contact.new, url: contacts_path, method: :post) %>
+  <% end %>
+<% end %>

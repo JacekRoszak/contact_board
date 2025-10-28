@@ -1,5 +1,5 @@
 - if any_contacts?
-  table.contacts-table
+  table#contacts_table.contacts-table
     thead
       tr
         th = Contact.human_attribute_name(:name)
@@ -8,15 +8,39 @@
         th = Contact.human_attribute_name(:phone)
         th = Contact.human_attribute_name(:category)
         th = Contact.human_attribute_name(:updated_at)
+        th Akcje
     tbody
       - contacts.each_with_index do |contact, index|
-        tr class=('odd' if index.odd?)
-          td = contact.name
-          td = contact.surname
-          td = contact.email
-          td = contact.phone
-          td = t("contacts.categories.#{contact.category}")
+        tr id="contact_#{contact.id}" class=('odd' if index.odd?) data-controller="inline-edit" data-inline-edit-contact-id-value="#{contact.id}" data-turbo="false"
+          td data-inline-edit-target="nameCell"
+            span.display-value data-inline-edit-target="nameDisplay" = contact.name
+            input.cell-input type="text" name="contact[name]" value="#{contact.name}" style="display: none;" data-inline-edit-target="nameInput"
+          
+          td data-inline-edit-target="surnameCell"
+            span.display-value data-inline-edit-target="surnameDisplay" = contact.surname
+            input.cell-input type="text" name="contact[surname]" value="#{contact.surname}" style="display: none;" data-inline-edit-target="surnameInput"
+          
+          td data-inline-edit-target="emailCell"
+            span.display-value data-inline-edit-target="emailDisplay" = contact.email
+            input.cell-input type="email" name="contact[email]" value="#{contact.email}" style="display: none;" data-inline-edit-target="emailInput"
+          
+          td data-inline-edit-target="phoneCell"
+            span.display-value data-inline-edit-target="phoneDisplay" = contact.phone
+            input.cell-input type="tel" name="contact[phone]" value="#{contact.phone}" style="display: none;" data-inline-edit-target="phoneInput"
+          
+          td data-inline-edit-target="categoryCell"
+            span.display-value data-inline-edit-target="categoryDisplay" = t("contacts.categories.#{contact.category}")
+            select.cell-select name="contact[category]" style="display: none;" data-inline-edit-target="categoryInput"
+              - Contact.categories.each do |key, _|
+                option value="#{key}" selected=(contact.category == key) = t("contacts.categories.#{key}")
+          
           td = t('contacts.time.ago', time: time_ago_in_words(contact.updated_at))
+          
+          td.actions
+            button.btn-small.edit-btn type="button" data-action="click->inline-edit#edit" data-inline-edit-target="editButton" = t('common.edit')
+            button.btn-small.btn-primary.save-btn type="button" data-action="click->inline-edit#save" data-inline-edit-target="saveButton" style="display: none;" = t('common.save')
+            = link_to t('common.delete'), contact_path(contact), data: { turbo_method: :delete, turbo_confirm: t('contacts.messages.confirm_delete') }, class: 'btn-small btn-danger', data: { inline_edit_target: "deleteButton" }
+            button.btn-small.btn-secondary.cancel-btn type="button" data-action="click->inline-edit#cancel" data-inline-edit-target="cancelButton" style="display: none;" = t('common.cancel')
 - else
   .empty-state
     p = t('contacts.index.no_contacts')

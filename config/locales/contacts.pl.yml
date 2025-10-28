@@ -32,15 +32,8 @@ pl:
       no_contacts: "Brak kontaktów"
       new_contact: "Nowy kontakt"
       count: "Liczba kontaktów: %{count}"
-    show:
-      title: "Szczegóły kontaktu"
-      edit: "Edytuj"
-      delete: "Usuń"
-      back: "Powrót do listy"
     new:
       title: "Nowy kontakt"
-    edit:
-      title: "Edytuj kontakt"
     form:
       create: "Utwórz kontakt"
       update: "Zaktualizuj kontakt"
@@ -51,6 +44,7 @@ pl:
       created: "Kontakt został pomyślnie utworzony."
       updated: "Kontakt został pomyślnie zaktualizowany."
       deleted: "Kontakt został pomyślnie usunięty."
+      update_failed: "Nie udało się zaktualizować kontaktu."
       confirm_delete: "Czy na pewno chcesz usunąć ten kontakt?"
     categories:
       family: "Rodzina"
@@ -64,4 +58,5 @@ pl:
     back: "Powrót"
     edit: "Edytuj"
     delete: "Usuń"
-    show: "Pokaż"
+    save: "Zapisz"
+    cancel: "Anuluj"

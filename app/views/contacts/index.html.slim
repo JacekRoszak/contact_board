@@ -1,5 +1,16 @@
-.page-header
-  h1 = t('contacts.index.title')
-  = link_to t('contacts.index.new_contact'), new_contact_path, class: 'btn btn-primary'
+div data-controller="contact-counter"
+  .page-header
+    h1 
+      = t('contacts.index.title')
+      span.contact-count
+        | (
+        span data-contact-counter-target="counter" 0
+        | )
+    .page-actions
+      = form_with url: contacts_path, method: :get, local: true, data: { turbo_frame: "contacts_list" } do |form|
+        = form.select :category, options_for_select([['Wszystkie', '']] + Contact.categories.map { |key, _| [t("contacts.categories.#{key}"), key] }, params[:category]), {}, { onchange: "this.form.submit()", class: 'filter-select' }
+      = link_to t('contacts.index.new_contact'), new_contact_path, class: 'btn btn-primary'
 
-= render ContactsListComponent.new(contacts: @contacts)
+  = turbo_frame_tag "contacts_list" do
+    div data-contact-counter-target="list"
+      = render ContactsListComponent.new(contacts: @contacts)

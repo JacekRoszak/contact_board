@@ -14,18 +14,19 @@ html
     link rel="icon" href="/icon.svg" type="image/svg+xml"
     link rel="apple-touch-icon" href="/icon.png"
 
-    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
   body
     = render NavbarComponent.new(current_user: current_user) if user_signed_in?
     
     .container
-      - if notice
-        = render FlashComponent.new(message: notice, type: :notice)
-      
-      - if alert
-        = render FlashComponent.new(message: alert, type: :alert)
+      div#flash_messages
+        - if notice
+          = render FlashComponent.new(message: notice, type: :notice)
+        
+        - if alert
+          = render FlashComponent.new(message: alert, type: :alert)
       
       .content
         = yield

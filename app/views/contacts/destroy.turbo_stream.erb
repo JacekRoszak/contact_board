@@ -1,0 +1,5 @@
+<%= turbo_stream.remove "contact_#{@contact.id}" %>
+
+<%= turbo_stream.update "flash_messages" do %>
+  <%= render FlashComponent.new(message: flash[:notice], type: :notice) if flash[:notice] %>
+<% end %>
