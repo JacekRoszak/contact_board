@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :contact do
-    name { Faker::Name.first_name }
-    surname { Faker::Name.last_name }
-    email { Faker::Internet.unique.email }
-    phone { "+48#{Faker::Number.number(digits: 9)}" }
+    sequence(:name) { |n| "Jan#{n}" }
+    sequence(:surname) { |n| "Kowalski#{n}" }
+    sequence(:email) { |n| "user#{n}@example.com" }
+    phone { "+48#{rand(100000000..999999999)}" }
     category { Contact.categories.keys.sample }
 
     trait :family do
@@ -19,7 +19,7 @@ FactoryBot.define do
     end
 
     trait :with_polish_phone do
-      phone { "+48 #{Faker::Number.number(digits: 9)}" }
+      phone { "+48 #{rand(100000000..999999999)}" }
     end
 
     trait :without_phone do

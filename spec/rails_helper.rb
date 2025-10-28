@@ -5,9 +5,6 @@ $VERBOSE = nil
 
 require_relative '../config/environment'
 
-require 'faker'
-I18n.available_locales = [:pl, :en]
-Faker::Config.locale = :en
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 
@@ -28,4 +25,5 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+
 end
